@@ -1,0 +1,55 @@
+#Prompting user to enter a string
+inp = input("Enter the string : ")
+#Creating an empty string to store the modified input string and initializing index to 0
+ninp = ""
+index = 0
+#Loop through the characters in the input string
+for i in range(len(inp)):
+    #If character is '-', skip it
+    if inp[i] == '-':
+        continue
+    else:
+    # If character is alphanumeric, add it to ninp and increment index  
+        if (inp[i] >= 'a' and inp[i] <= 'z') or (inp[i] >= 'A' and inp[i] <= 'Z') or (inp[i] >= '0' and inp[i] <= '9'):
+             ninp += inp[i]
+             index += 1
+            #Store the first index characters of ninp in ninp
+ninp = ninp[:index]
+ #Loop through the characters in ninp
+for i in range(len(ninp)):
+    # check that we are printing correct pairs i.e. X-b,x-B,1-5 and not X-b,b-x,x-B,1-5
+    if i % 2 != 0:
+        continue
+        #Small alphabets   
+    if ninp[i] >= 'a' and ninp[i] <= 'z':
+        #Check if next alphabet is small and print them 
+        if ninp[i+1] >= 'a' and ninp[i+1] <= 'z':
+            temp1 = ord(ninp[i])
+            temp2 = ord(ninp[i+1])
+            for j in range(temp1, temp2+1):
+                print(chr(j), end="")
+        #Check if next alphabet is capital then print accordingly
+        elif ninp[i+1] >= 'A' and ninp[i+1] <= 'Z':
+            for j in range(ord(ninp[i]), 123):
+                print(chr(j), end="")
+            for j in range(65, ord(ninp[i+1])+1):
+                print(chr(j), end="")
+    # For capital
+    elif ninp[i] >= 'A' and ninp[i] <= 'Z':
+    #If next alphabet capital then print them   
+        if ninp[i+1] >= 'A' and ninp[i+1] <= 'Z':
+            temp1 = ord(ninp[i])
+            temp2 = ord(ninp[i+1])
+            for j in range(temp1, temp2+1):
+                print(chr(j), end="")
+        #Check if next alphabet 
+        # pital then print accordingly       
+        
+    # For numbers    
+    elif (ninp[i] >= '0' and ninp[i] <= '9') and (ninp[i+1] >= '0' and ninp[i+1] <= '9'):
+        temp1 = ord(ninp[i])
+        temp2 = ord(ninp[i+1])
+        for j in range(temp1, temp2+1):
+            print(chr(j), end="")
+#Print a newline character at the end          
+    print()
